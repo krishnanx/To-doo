@@ -2,16 +2,22 @@ import React, { useState,useContext } from "react";
 import "./List.css";
 import { completedContext } from "../../App";
 import clickSound from "../../assets/audio/Clicksound.mp3"
+import { updateDoc ,doc} from "firebase/firestore";
+import { colRef ,db} from "../Firebase/Firestore";
 const List = (P) => {
   const [comp_value, setComp_value] = useContext(completedContext)
   const [check, setIsChecked] = useState(false);
   const task = P.value;
-  const blog = task.work;
-  console.log(task)
+  //console.log(task.id)
+  const id = task.id
+  const blog = task.data().work;
+  console.log(blog)
+  //console.log(task.data())
   const index = P.index;
   const array = P.array;
   const setTodo = P.setTodo;
   //console.log(blog,index);
+  const docRef = doc(db,'Tasks',id);
   const removeItem = (Index) => {
     setTimeout(() => {
       const newItems = array.filter((_, i) => i !== Index);
@@ -34,13 +40,28 @@ const List = (P) => {
   };
   const HandleChange = () => {
    
-    setIsChecked(true);
+    
+    try {
+      setIsChecked(true);
+      //blog = "";
+      setTimeout(()=>setIsChecked(false),500)
+      setTimeout(()=>{
+        updateDoc(docRef,{
+          status:true,
+          work:blog
+        });
+        console.log('Document successfully updated!');
+      },600)
+      
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
+
     //console.log(array);
-    const Index = array.indexOf(blog);
+    //const Index = array.indexOf(blog);
     //console.log(Index);
-    setComp_value([...comp_value, blog]);
-    blog = "";
-    setTimeout(()=>setIsChecked(false),600)
+    //setComp_value([...comp_value, blog]);
+    
     //removeItem(Index);
 
     //console.log(comp_value)
