@@ -1,0 +1,33 @@
+.CompletedPage{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    min-height:742px;
+    max-height:auto;
+    /*margin-top: 20px;
+    margin-bottom: 20px;*/
+
+
+}
+.completed{
+    display: flex;
+    margin-top: 40px;
+    padding-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-evenly;
+    width:700px;
+    min-height:600px;
+    background-color: #E8D7FF;
+    border: solid;
+    border-color:black;
+}
+.Completed_Task{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:600px;
+    height:10%;
+}
