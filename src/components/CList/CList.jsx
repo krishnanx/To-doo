@@ -2,11 +2,17 @@ import React,{useState,useContext}from 'react'
 import { importantContext } from '../../App';
 import { completedContext } from '../../App';
 import './CList.css'
+import { updateDoc,doc } from 'firebase/firestore';
+import { db } from '../Firebase/Firestore';
 const CList = (P) => {
     const task = P.value;
-    const blog = task.work
-    const comp_value=P.comp_value;
-    const setComp_value=P.setComp_value
+    //console.log(task.id)
+    const id = task.id
+    const blog = task.data().work;
+    console.log(blog)
+    const docRef = doc(db,'Tasks',id);
+    //const comp_value=P.comp_value;
+    //const setComp_value=P.setComp_value
     const [check, setIsChecked] = useState(true);
     const [todo,setTodo] = useContext(importantContext);
     //const [comp_value,setComp_value] = useContext(completedContext);
@@ -18,15 +24,21 @@ const CList = (P) => {
       // setIsChecked(false);
     };
     const HandleChange = () => {
-      setIsChecked(false);
-      //console.log(array);
-      const Index = comp_value.indexOf(blog);
-      //console.log(Index);
-      setTodo([...todo, blog]);
-      blog = "";
-      setTimeout(()=>setIsChecked(true),600)
-      removeItem(Index);
-      //console.log(comp_value)
+      try {
+        setIsChecked(false);
+        //blog = "";
+        setTimeout(()=>setIsChecked(true),500)
+        setTimeout(()=>{
+          updateDoc(docRef,{
+            status:false,
+            work:blog
+          });
+          console.log('Document successfully updated!');
+      },600)
+      } catch (error) {
+          console.error('Error updating document: ', error);
+      }
+      
     };
   return (
     <div className='completed_div'>
