@@ -2,17 +2,22 @@ import React, { useState,useContext } from "react";
 import "./List.css";
 import { completedContext } from "../../App";
 import clickSound from "../../assets/audio/Clicksound.mp3"
-import { updateDoc ,doc} from "firebase/firestore";
+import { updateDoc ,doc,collection} from "firebase/firestore";
 import { colRef ,db} from "../Firebase/Firestore";
+import { Email } from "../Contexts/EmailContext";
 const List = (P) => {
   const [comp_value, setComp_value] = useContext(completedContext)
   const [check, setIsChecked] = useState(false);
+  const [email,setEmail] = useContext(Email)
+  
   const task = P.value;
   //console.log(task.id)
   const id = task.id
+  console.log(id)
   const blog = task.data().work;
   console.log(blog)
-  const docRef = doc(db,'Tasks',id);
+  const docRef = doc(db,'Database',`${email}`,`${email}`,id)
+  //const docRef = doc(db,'Database',id);
   //console.log(task.data())
   const index = P.index;
   const array = P.array;

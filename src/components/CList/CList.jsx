@@ -4,13 +4,16 @@ import { completedContext } from '../../App';
 import './CList.css'
 import { updateDoc,doc } from 'firebase/firestore';
 import { db } from '../Firebase/Firestore';
+import { Email } from '../Contexts/EmailContext';
 const CList = (P) => {
+    const [email,setEmail] = useContext(Email)
     const task = P.value;
     //console.log(task.id)
     const id = task.id
     const blog = task.data().work;
     console.log(blog)
-    const docRef = doc(db,'Tasks',id);
+    const docRef = doc(db,'Database',`${email}`,`${email}`,id)
+    //const docRef = doc(db,'Database',id);
     //const comp_value=P.comp_value;
     //const setComp_value=P.setComp_value
     const [check, setIsChecked] = useState(true);

@@ -1,9 +1,10 @@
 import React,{useContext, useState} from 'react'   
 import './Landing.css'
 import { themeContext } from '../../App';
-
+import { Email } from '../Contexts/EmailContext';
 const Landing = () => {
     const [theme,setTheme]=useContext(themeContext);
+    const [email,setEmail] = useContext(Email)
     const themeStyle={
         display: 'flex',
         alignItems:'center',
@@ -20,7 +21,7 @@ const Landing = () => {
    
   return (
     <div style={themeStyle}>
-        Home
+        <p>{email}</p>
     </div>
   )
 }

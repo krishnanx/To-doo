@@ -3,11 +3,13 @@ import { completedContext, importantContext } from '../../App';
 import CList from '../CList/CList'
 import './CompletedData.css'
 import { FetchData } from '../FetchData';
-import { onSnapshot } from 'firebase/firestore';
-import { colRef } from '../Firebase/Firestore';
+import { onSnapshot ,collection} from 'firebase/firestore';
+import { colRef,db } from '../Firebase/Firestore';
+import { Email } from '../Contexts/EmailContext';
 const CompletedData = (P) => {
     const [todo,setTodo] = useContext(importantContext);
     const [comp_value,setComp_value] = useContext(completedContext)
+    const [email,setEmail] = useContext(Email)
     //console.log('Data component rendered');
     //const todo=p.todo;
     //const setTodo=p.setTodo;
@@ -23,14 +25,15 @@ const CompletedData = (P) => {
       }
     response();
   },[])*/
-  useEffect(()=>{
-    onSnapshot(colRef, (snapshot) => {
+  const docRef = collection(db,'Database',`${email}`,`${email}`)
+   useEffect(()=>{
+    onSnapshot(docRef, (snapshot) => {
       const docs = snapshot.docs
-      //console.log(docs)
+      console.log(docs)
       setTodo(docs)
       //console.log(todo)
     })
-   },[])
+   },[email])
   return (
     <div className='Ctask'>
         {(todo)?(todo.map((value, index) => {

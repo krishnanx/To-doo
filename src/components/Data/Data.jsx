@@ -7,10 +7,12 @@ import { getAnalytics } from "firebase/analytics";
 import {
     getFirestore,collection,getDocs,onSnapshot
 } from 'firebase/firestore'
-import { colRef } from '../Firebase/Firestore';
+import {db} from '../Firebase/Firestore';
 import { FetchData } from '../FetchData';
+import { Email } from '../Contexts/EmailContext';
 const Data = (p) => {
       const [todo,setTodo] = useContext(importantContext)
+      const [email,setEmail] = useContext(Email)
       //console.log('Data component rendered');
       //const todo=p.todo;
       //const setTodo=p.setTodo;
@@ -28,14 +30,15 @@ const Data = (p) => {
         }
       response();
     })*/
+   const docRef = collection(db,'Database',`${email}`,`${email}`)
    useEffect(()=>{
-    onSnapshot(colRef, (snapshot) => {
+    onSnapshot(docRef, (snapshot) => {
       const docs = snapshot.docs
-      //console.log(docs)
+      console.log(docs)
       setTodo(docs)
       //console.log(todo)
     })
-   },[])
+   },[email])
     //console.log(docs)
     /*useEffect(() => {
       console.log(todo); // Log the updated todo state

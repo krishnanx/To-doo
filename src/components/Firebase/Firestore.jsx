@@ -4,6 +4,10 @@ import { getAnalytics } from "firebase/analytics";
 import {
     getFirestore,collection,getDocs,addDoc
 } from 'firebase/firestore'
+import {
+  getAuth,
+  GoogleAuthProvider
+} from 'firebase/auth'
 export const AddData = ()=>{
 
 }
@@ -28,11 +32,15 @@ export const AddData = ()=>{
   
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
+      
       const analytics = getAnalytics(app);
       //init services
       export const db = getFirestore()
+      export const auth = getAuth(app)
+      export const provider = new GoogleAuthProvider();
+
       //collection reference
-      export const colRef = collection(db,'Tasks')
+      export const colRef = collection(db,'Database')
       export const colRefC = collection(db,'completed')
 
      

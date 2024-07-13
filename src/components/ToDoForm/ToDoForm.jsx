@@ -1,20 +1,32 @@
 import React, { useContext, useState } from "react";
 import "./ToDoForm.css";
 import List from "../List/List";
-import { addDoc, getDoc, setDoc } from "firebase/firestore";
-import { colRef } from "../Firebase/Firestore";
+import { addDoc, getDoc, setDoc,collection} from "firebase/firestore";
+import {db} from "../Firebase/Firestore";
 import { FetchData } from "../FetchData";
 import { importantContext } from "../../App";
+import { Email } from "../Contexts/EmailContext";
 const ToDoForm = (p) => {
   const [value, setValue] = useState("");
   const [todo,setTodo] = useContext(importantContext)
+  const [email,setEmail] = useContext(Email)
+  const subcollectionRef = collection(db,'Database',`${email}`,`${email}`)
   /*const todo=p.todo;
   const setTodo = p.setTodo;*/
   const handleClick = async()=>{
-    addDoc(colRef,{
+    try {
+      addDoc(subcollectionRef,{
+        status:false,
+        work:value
+      }
+      )
+    } catch (error) {
+      console.log(error)
+    }
+    /*addDoc(colRef,{
       status:false,
       work:value,
-     })
+     })*/
     /*const response = await FetchData()
     const information = response.docs.map(doc=>doc.data());
     console.log(information)
