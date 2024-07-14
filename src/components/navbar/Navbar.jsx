@@ -5,11 +5,14 @@ import "./navbar.css";
 import logo from "./icons/to-do-high-resolution-logo-black-transparent.png";
 import { useNavigate,useLocation } from "react-router-dom";
 import { themeContext } from '../../App';
-import { signInWithPopup } from "firebase/auth";
+import { getAuth,signInWithPopup,setPersistence ,browserSessionPersistence ,} from "firebase/auth";
 import { auth,provider } from "../Firebase/Firestore";
 import { Email } from "../Contexts/EmailContext";
+import Cookies from 'js-cookie';
+
 
 const Navbar = (l) => {
+  //const auth = getAuth();
   const [theme,setTheme]=useContext(themeContext);
   const [Name, setName] = useState("Important Tasks");
   const navigate = useNavigate();
@@ -22,9 +25,25 @@ const Navbar = (l) => {
   }
   const signIn = async() =>{
     try {
-      signInWithPopup(auth,provider).then(data=>{
-        setEmail(data.user.email)
-      })
+      
+        const userCredentials = await signInWithPopup(auth, provider);
+        const user = userCredentials.user;
+        setEmail(user.email);
+        document.cookie = `user=${user.email}; path=/; expires=31 Dec 2024 `;
+        /*const idTokenResult = await user.getIdTokenResult();
+        const expirationTime = idTokenResult.expirationTime; // Timestamp of token expiration
+        console.log('Token expiration time:', new Date(expirationTime));
+
+        const token = await user.getIdToken();
+        console.log('Token retrieved:', token); // Debugging log
+
+        // Set the token in a secure cookie
+        Cookies.set('authToken', token, { secure: true, sameSite: 'Strict' });
+        console.log('Cookie set:', Cookies.get('authToken')); // Debugging log*/
+
+        console.log('User signed in and cookie set.');
+     
+      
     } catch (error) {
       console.log("error:", error)
     }
@@ -32,9 +51,11 @@ const Navbar = (l) => {
   }
   const signout = async() => {
     try {
-      signout(auth).then(()=>{
+      const userCredentials=signout(auth).then(()=>{
         setEmail(null)
       })
+      const user = userCredentials.user;
+      document.cookie = `username=${user.email}; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/`;
     } catch (error) {
       
     }

@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import Cookies from 'js-cookie';
 import {
     getFirestore,collection,getDocs,addDoc
 } from 'firebase/firestore'
 import {
   getAuth,
-  GoogleAuthProvider
+  GoogleAuthProvider,
+  setPersistence
 } from 'firebase/auth'
 export const AddData = ()=>{
 
