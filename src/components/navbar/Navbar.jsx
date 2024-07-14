@@ -8,6 +8,7 @@ import { themeContext } from '../../App';
 import { signInWithPopup } from "firebase/auth";
 import { auth,provider } from "../Firebase/Firestore";
 import { Email } from "../Contexts/EmailContext";
+
 const Navbar = (l) => {
   const [theme,setTheme]=useContext(themeContext);
   const [Name, setName] = useState("Important Tasks");
@@ -16,13 +17,27 @@ const Navbar = (l) => {
   const [Location, setLocation] = useState("");
   const [value,setValue] = useState('')
   const [email,setEmail] = useContext(Email)
-const HandleClick=()=>{
-  setTheme(!theme);
-}
-  const signIn = () =>{
-    signInWithPopup(auth,provider).then(data=>{
-      setEmail(data.user.email)
-    })
+  const HandleClick=()=>{
+    setTheme(!theme);
+  }
+  const signIn = async() =>{
+    try {
+      signInWithPopup(auth,provider).then(data=>{
+        setEmail(data.user.email)
+      })
+    } catch (error) {
+      console.log("error:", error)
+    }
+   
+  }
+  const signout = async() => {
+    try {
+      signout(auth).then(()=>{
+        setEmail(null)
+      })
+    } catch (error) {
+      
+    }
   }
   useEffect(()=>{
     email===null?navigate('/'):null;
@@ -36,13 +51,23 @@ const HandleClick=()=>{
       <div className="navbar">
         <div className="left_icons">
           <img className="logo" src={logo}></img>
-          {email===null?<button 
+          {email===null?
+          <button 
             className="button-55"
             role="button"
             onClick={signIn}
             >
               Sign In
-            </button>:null}
+          </button>
+            :
+          <button 
+            className="button-55"
+            role="button"
+            onClick={signout}
+            >
+              Sign out
+          </button>
+            }
         </div>
         <div className="Right_icons">
           {theme?(<button className="sun" onClick={HandleClick}><img src={sun}></img></button>):(<button className="moon"  onClick={HandleClick}><img src={moon}></img></button>)}
