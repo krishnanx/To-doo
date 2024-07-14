@@ -7,7 +7,6 @@ import Completed from './components/page/Completed'
 import {BrowserRouter as Router,Route,Routes,useLocation} from 'react-router-dom'
 export const themeContext=createContext();
 export const importantContext=createContext();
-export const completedContext=createContext()
 import EmailContext from './components/Contexts/EmailContext'
 import {Email} from './components/Contexts/EmailContext'
 import Protected from './components/Protected/Protected'
@@ -16,8 +15,8 @@ import { auth } from './components/Firebase/Firestore'
 const App = () => {
   
   const [todo, setTodo] = useState([]);
-  const [theme,setTheme]=useState(false);
-  const [comp_value, setComp_value] = useState([]);
+  const [theme,setTheme]= useState(false);
+ 
   
   //const [user, setUser] = useState(null)
   theme?document.documentElement.style.backgroundColor = 'black':document.documentElement.style.backgroundColor='white';
@@ -32,7 +31,6 @@ const App = () => {
       <EmailContext>
           <themeContext.Provider value={[theme,setTheme]}> 
             <importantContext.Provider value={[todo,setTodo]}>
-              <completedContext.Provider value={[comp_value,setComp_value]}>
                 <Router>
                   <div style={{backgroundColor:'black'}}>
                     <Navbar/>
@@ -47,7 +45,6 @@ const App = () => {
                     </Routes>
                   </div>
               </Router>
-            </completedContext.Provider>
           </importantContext.Provider>
         </themeContext.Provider>
       </EmailContext>

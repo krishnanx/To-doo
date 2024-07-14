@@ -5,7 +5,7 @@ import "./navbar.css";
 import logo from "./icons/to-do-high-resolution-logo-black-transparent.png";
 import { useNavigate,useLocation } from "react-router-dom";
 import { themeContext } from '../../App';
-import { getAuth,signInWithPopup,setPersistence ,browserSessionPersistence ,} from "firebase/auth";
+import { getAuth,signInWithPopup,setPersistence ,browserSessionPersistence,signOut} from "firebase/auth";
 import { auth,provider } from "../Firebase/Firestore";
 import { Email } from "../Contexts/EmailContext";
 import Cookies from 'js-cookie';
@@ -49,15 +49,42 @@ const Navbar = (l) => {
     }
    
   }
+  
   const signout = async() => {
     try {
-      const userCredentials=signout(auth).then(()=>{
+      await signOut(auth).then(()=>{
         setEmail(null)
+        console.log("sign out...")
+        document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+        console.log('User signed out and cookie removed.');
+        navigate('/')
       })
-      const user = userCredentials.user;
-      document.cookie = `username=${user.email}; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/`;
-    } catch (error) {
+      //const user = userCredentials.user;
       
+        
+      
+      /*function onRemoved(cookie) {
+        console.log(`Removed: ${cookie}`);
+      }
+      
+      function onError(error) {
+        console.log(`Error removing cookie: ${error}`);
+      }
+      
+      function removeCookie(tabs) {
+        let removing = browser.cookies.remove({
+          url: "http://localhost:5173/",
+          name: "user",
+        });
+        removing.then(onRemoved, onError);
+      }
+      
+      let getActive = browser.tabs.query({ active: true, currentWindow: true });
+      getActive.then(removeCookie);*/
+      //document.cookie = 'COOKIE_NAME=; Max-Age=0; path=/; domain=' + location.host;
+      
+    } catch (error) {
+      console.log("error:", error)
     }
   }
   useEffect(()=>{

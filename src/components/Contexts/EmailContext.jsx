@@ -8,7 +8,17 @@ const EmailContext = ({children}) => {
         return { name, value };
       });
       console.log(allCookies);
+      function getCookie(Name) {
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + Name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+      }
+      
+      // Example usage: retrieving the value of the cookie named 'myURL'
+      let urlFromCookie = getCookie(allCookies[0].name);
+      console.log(urlFromCookie);  // Output the URL stored in the cookie
       (allCookies[0].value!==undefined)?(setEmail(allCookies[0].value)):(setEmail(null))
+
     },[])
   return (
     <div>
