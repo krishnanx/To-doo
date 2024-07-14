@@ -1,9 +1,9 @@
 import React,{useContext, useState} from 'react'   
 import './Landing.css'
-import { themeContext } from '../../App';
+import { importantContext} from '../../App';
 import { Email } from '../Contexts/EmailContext';
 const Landing = () => {
-    const [theme,setTheme]=useContext(themeContext);
+    const [todo,setTodo,theme,setTheme]=useContext(importantContext);
     const [email,setEmail,currentUser] = useContext(Email)
     const themeStyle={
         display: 'flex',

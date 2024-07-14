@@ -1,9 +1,9 @@
 import React,{useContext} from 'react'
-import { themeContext } from '../../App';
+import { importantContext } from '../../App';
 import CompletedData from '../completedData/CompletedData';
 import './Completed.css'
 const Completed = () => {
-    const [theme,setTheme]=useContext(themeContext);
+  const [todo,setTodo,theme,setTheme]=useContext(importantContext);
     
     const themeStyle={
         //display: 'flex',

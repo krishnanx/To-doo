@@ -4,7 +4,7 @@ import sun from '../navbar/icons/sun-solid.svg'
 import "./navbar.css";
 import logo from "./icons/to-do-high-resolution-logo-black-transparent.png";
 import { useNavigate,useLocation } from "react-router-dom";
-import { themeContext } from '../../App';
+import { importantContext} from '../../App';
 import { getAuth,signInWithPopup,setPersistence ,browserSessionPersistence,signOut} from "firebase/auth";
 import { auth,provider } from "../Firebase/Firestore";
 import { Email } from "../Contexts/EmailContext";
@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 
 const Navbar = (l) => {
   //const auth = getAuth();
-  const [theme,setTheme]=useContext(themeContext);
+  const [todo,setTodo,theme,setTheme]=useContext(importantContext);
   const [Name, setName] = useState("Important Tasks");
   const navigate = useNavigate();
   const location = useLocation();

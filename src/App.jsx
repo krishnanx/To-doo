@@ -10,7 +10,7 @@ export const importantContext=createContext();
 import EmailContext from './components/Contexts/EmailContext'
 import {Email} from './components/Contexts/EmailContext'
 import Protected from './components/Protected/Protected'
-import AuthContext from './components/Contexts/AuthContext'
+//import AuthContext from './components/Contexts/AuthContext'
 import { auth } from './components/Firebase/Firestore'
 const App = () => {
   
@@ -27,10 +27,9 @@ const App = () => {
   })*/
   
   return (
-    <AuthContext>
       <EmailContext>
-          <themeContext.Provider value={[theme,setTheme]}> 
-            <importantContext.Provider value={[todo,setTodo]}>
+          
+            <importantContext.Provider value={[todo,setTodo,theme,setTheme]}>
                 <Router>
                   <div style={{backgroundColor:'black'}}>
                     <Navbar/>
@@ -46,9 +45,9 @@ const App = () => {
                   </div>
               </Router>
           </importantContext.Provider>
-        </themeContext.Provider>
+        
       </EmailContext>
-    </AuthContext>
+    
     
     
     

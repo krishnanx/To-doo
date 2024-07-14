@@ -3,13 +3,13 @@ import React,{useState,useContext} from 'react'
 import ToDoForm from '../ToDoForm/ToDoForm'
 import Data from '../Data/Data'
 import "./Important.css";
-import { themeContext } from '../../App';
+
 import { importantContext } from '../../App';
 const Important = () => {
 
   
-  const [theme,setTheme]=useContext(themeContext);
-  const [todo,setTodo] = useContext(importantContext);
+  
+  const [todo,setTodo,theme,setTheme]=useContext(importantContext);
   const themeStyle={
         //display: 'flex',
         //alignItems:'center',
