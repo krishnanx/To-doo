@@ -1,6 +1,6 @@
 import React,{useState,useContext}from 'react'
 import { importantContext } from '../../App';
-import { completedContext } from '../../App';
+
 import './CList.css'
 import { updateDoc,doc } from 'firebase/firestore';
 import { db } from '../Firebase/Firestore';

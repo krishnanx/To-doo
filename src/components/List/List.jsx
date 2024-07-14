@@ -1,12 +1,11 @@
 import React, { useState,useContext } from "react";
 import "./List.css";
-import { completedContext } from "../../App";
 import clickSound from "../../assets/audio/Clicksound.mp3"
 import { updateDoc ,doc,collection} from "firebase/firestore";
 import { colRef ,db} from "../Firebase/Firestore";
 import { Email } from "../Contexts/EmailContext";
 const List = (P) => {
-  const [comp_value, setComp_value] = useContext(completedContext)
+  
   const [check, setIsChecked] = useState(false);
   const [email,setEmail] = useContext(Email)
   

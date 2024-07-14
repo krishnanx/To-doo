@@ -16,7 +16,7 @@ const Important = () => {
         //justifyContent: 'center',
         //width:'100%',
         //height:'89.8vh',
-        backgroundColor: theme? 'black':'white',
+        backgroundColor: theme? '#36454F':'white',
         //color: theme? 'white':'black',  
     }
       const important={

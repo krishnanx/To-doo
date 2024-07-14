@@ -19,7 +19,7 @@ const App = () => {
  
   
   //const [user, setUser] = useState(null)
-  theme?document.documentElement.style.backgroundColor = 'black':document.documentElement.style.backgroundColor='white';
+  theme?document.documentElement.style.backgroundColor = '#36454F':document.documentElement.style.backgroundColor='white';
   /*useEffect(()=>{
     auth.onAuthStateChanged((user)=>{
       setUser(user);

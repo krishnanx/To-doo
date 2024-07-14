@@ -19,7 +19,7 @@ const Navbar = (l) => {
   const location = useLocation();
   const [Location, setLocation] = useState("");
   const [value,setValue] = useState('')
-  const [email,setEmail] = useContext(Email)
+  const [email,setEmail,currentUser,setCurrentUser] = useContext(Email)
   const HandleClick=()=>{
     setTheme(!theme);
   }
@@ -28,7 +28,9 @@ const Navbar = (l) => {
       
         const userCredentials = await signInWithPopup(auth, provider);
         const user = userCredentials.user;
+        console.log(user)
         setEmail(user.email);
+        setCurrentUser(user.displayName)
         document.cookie = `user=${user.email}; path=/; expires=31 Dec 2024 `;
         /*const idTokenResult = await user.getIdTokenResult();
         const expirationTime = idTokenResult.expirationTime; // Timestamp of token expiration
@@ -54,6 +56,7 @@ const Navbar = (l) => {
     try {
       await signOut(auth).then(()=>{
         setEmail(null)
+        setCurrentUser(null)
         console.log("sign out...")
         document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
         console.log('User signed out and cookie removed.');

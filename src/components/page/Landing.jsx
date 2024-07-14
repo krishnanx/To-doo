@@ -4,14 +4,14 @@ import { themeContext } from '../../App';
 import { Email } from '../Contexts/EmailContext';
 const Landing = () => {
     const [theme,setTheme]=useContext(themeContext);
-    const [email,setEmail] = useContext(Email)
+    const [email,setEmail,currentUser] = useContext(Email)
     const themeStyle={
         display: 'flex',
         alignItems:'center',
         justifyContent: 'center',
         width:'100%',
         height:'89.8vh',
-        backgroundColor: theme? 'black':'white',
+        backgroundColor: theme? '#36454F':'white',
         color: theme? 'white':'black',  
         
         
@@ -21,7 +21,7 @@ const Landing = () => {
    
   return (
     <div style={themeStyle}>
-        <p>{email}</p>
+        {currentUser!==null?<p>Welcome {currentUser}</p>:null}
     </div>
   )
 }

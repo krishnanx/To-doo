@@ -1,5 +1,5 @@
 import React, { useContext,useEffect } from 'react'
-import { completedContext, importantContext } from '../../App';
+import { importantContext } from '../../App';
 import CList from '../CList/CList'
 import './CompletedData.css'
 import { FetchData } from '../FetchData';
@@ -8,7 +8,7 @@ import { colRef,db } from '../Firebase/Firestore';
 import { Email } from '../Contexts/EmailContext';
 const CompletedData = (P) => {
     const [todo,setTodo] = useContext(importantContext);
-    const [comp_value,setComp_value] = useContext(completedContext)
+   
     const [email,setEmail] = useContext(Email)
     //console.log('Data component rendered');
     //const todo=p.todo;
