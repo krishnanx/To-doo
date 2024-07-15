@@ -2,7 +2,8 @@ import React, { useState,useContext, useEffect } from "react";
 import moon from '../navbar/icons/moon-solid.svg'
 import sun from '../navbar/icons/sun-solid.svg'
 import "./navbar.css";
-import logo from "./icons/to-do-high-resolution-logo-black-transparent.png";
+import Blogo from "./icons/to-do-high-resolution-logo-black-transparent.png";
+//import Wlogo from "./icons/whiteLogo"
 import { useNavigate,useLocation } from "react-router-dom";
 import { importantContext} from '../../App';
 import { getAuth,signInWithPopup,setPersistence ,browserSessionPersistence,signOut} from "firebase/auth";
@@ -97,11 +98,60 @@ const Navbar = (l) => {
   /*const function_name =()=>{
     Name = "Home"
   }*/
+  const styling = {
+    backgroundColor:theme?'rgba(255, 255, 255, 0.15)':'#CD5D67'
+  }
   return (
-    <div className="Main">
-      <div className="navbar">
+    
+      <div className="navbar" style={styling}>
         <div className="left_icons">
-          <img className="logo" src={logo}></img>
+          <img className="logo" src={Blogo}></img>
+          
+        </div>
+        <div className="Middle_icons">
+         
+          <a
+          className="CompletedTasks"
+          
+          >
+            
+          </a>
+          {email!==null?location.pathname!== "/Important" ? (
+             <a
+              className="ImportantTasks"   
+              onClick={() => {
+                    navigate("/Important");
+                  }} >Important Tasks
+          </a>
+          ) : (
+            <a
+              className="ImportantTasks"   
+              onClick={() => {
+                    navigate("/");
+                  }} >Home
+              </a>
+          ):null}
+          
+          {email!==null?location.pathname!== "/Completed" ? (
+           <a
+              className="ImportantTasks"   
+              onClick={() => {
+                    navigate("/completed");
+                  }} >Completed Tasks
+          </a>
+          ) : (
+            <a
+              className="ImportantTasks"   
+              onClick={() => {
+                    navigate("/");
+                  }} >Home
+              </a>
+          ):null}
+        </div>
+        <div className="Right_icons">
+          {theme?(<button className="sun" onClick={HandleClick}><img src={sun}></img></button>):(<button className="moon"  onClick={HandleClick}><img src={moon}></img></button>)}
+          
+          
           {email===null?
           <button 
             className="button-55"
@@ -120,55 +170,8 @@ const Navbar = (l) => {
           </button>
             }
         </div>
-        <div className="Right_icons">
-          {theme?(<button className="sun" onClick={HandleClick}><img src={sun}></img></button>):(<button className="moon"  onClick={HandleClick}><img src={moon}></img></button>)}
-          
-          {email!==null?location.pathname!== "/Important" ? (
-            <button
-              className="button-55"
-              role="button"
-              onClick={() => {
-                navigate("/Important");
-              }}
-            >
-              Important Task
-            </button>
-          ) : (
-            <button
-              className="button-55"
-              role="button"
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              Home
-            </button>
-          ):null}
-          
-          {email!==null?location.pathname!== "/Completed" ? (
-            <button
-              className="button-55"
-              role="button"
-              onClick={() => {
-                navigate("/Completed");
-              }}
-            >
-              Completed Task
-            </button>
-          ) : (
-            <button
-              className="button-55"
-              role="button"
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              Home
-            </button>
-          ):null}
-        </div>
       </div>
-    </div>
+    
   );
 };
 
