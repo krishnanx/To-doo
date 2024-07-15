@@ -21,7 +21,7 @@ const Navbar = (l) => {
   const [Location, setLocation] = useState("");
   const [value,setValue] = useState('')
   const [email,setEmail,currentUser,setCurrentUser,pic,setPic,click,setClick] = useContext(Email)
-  useEffect(()=>{
+  /*useEffect(()=>{
     const allCookies = document.cookie.split('; ').map(cookie => {
       const [name, value] = cookie.split('=');
       return { name, value };
@@ -44,7 +44,7 @@ const Navbar = (l) => {
     }
     //(allCookies[2].value!==undefined)?(setEmail(allCookies[1].value)):(setEmail(null))
 
-  },[])
+  },[])*/
   const HandleClick=()=>{
     setTheme(!theme);
   }

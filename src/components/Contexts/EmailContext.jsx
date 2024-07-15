@@ -16,11 +16,12 @@ const EmailContext = ({children}) => {
         let parts = value.split("; " + Name + "=");
         if (parts.length === 2) return parts.pop().split(";").shift();
       }
-      
+      console.log(allCookies)
       // Example usage: retrieving the value of the cookie named 'myURL'
-      let urlFromCookie = getCookie(allCookies[1].name);
+      let urlFromCookie = allCookies[0].value!==undefined?getCookie(allCookies[1].name):null;
+      setPic(urlFromCookie)
       //console.log(urlFromCookie);  // Output the URL stored in the cookie
-      (allCookies[1].value!==undefined)?(setEmail(allCookies[1].value)):(setEmail(null))
+      allCookies[0].value!==undefined? (allCookies[1].value!==undefined)?(setEmail(allCookies[1].value)):(setEmail(null)):null
 
     },[])
   return (
