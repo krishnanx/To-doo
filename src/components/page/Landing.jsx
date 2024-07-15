@@ -27,7 +27,7 @@ const Landing = () => {
    
   return (
     <div style={themeStyle}>
-        {currentUser!==null?<p>Welcome {currentUser}</p>:null}
+        {/*currentUser!==null?<p>Welcome {currentUser}</p>:null*/}
     </div>
   )
 }

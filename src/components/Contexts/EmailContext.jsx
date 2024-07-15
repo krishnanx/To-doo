@@ -4,6 +4,7 @@ const EmailContext = ({children}) => {
     const [email,setEmail] = useState(null);
     const [currentUser,SetCurrentUser] = useState(null);
     const [pic,setPic] = useState({});
+    const [click,setClick] = useState(false)
     useEffect(()=>{
       const allCookies = document.cookie.split('; ').map(cookie => {
         const [name, value] = cookie.split('=');
@@ -17,14 +18,14 @@ const EmailContext = ({children}) => {
       }
       
       // Example usage: retrieving the value of the cookie named 'myURL'
-      let urlFromCookie = getCookie(allCookies[0].name);
+      let urlFromCookie = getCookie(allCookies[1].name);
       console.log(urlFromCookie);  // Output the URL stored in the cookie
-      (allCookies[0].value!==undefined)?(setEmail(allCookies[0].value)):(setEmail(null))
+      (allCookies[1].value!==undefined)?(setEmail(allCookies[1].value)):(setEmail(null))
 
     },[])
   return (
     <div>
-        <Email.Provider value={[email,setEmail,currentUser,SetCurrentUser,pic,setPic]}>
+        <Email.Provider value={[email,setEmail,currentUser,SetCurrentUser,pic,setPic,click,setClick]}>
             {children}
         </Email.Provider>
     </div>

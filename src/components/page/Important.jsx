@@ -1,15 +1,23 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext, useEffect} from 'react'
 
 import ToDoForm from '../ToDoForm/ToDoForm'
 import Data from '../Data/Data'
 import "./Important.css";
 
 import { importantContext } from '../../App';
+import { Email } from '../Contexts/EmailContext';
 const Important = () => {
 
   
   
   const [todo,setTodo,theme,setTheme]=useContext(importantContext);
+  const [click,setClick] = useContext(Email)
+  
+    const cardTheme = {
+      display:click===true?'flex':'none'
+    }
+ 
+  
   const themeStyle={
     width: '100%',
     height: '900px',
@@ -33,6 +41,10 @@ const Important = () => {
   return (
     <div className='Homepage' style={themeStyle}>
       <div style={important} className='Important'>
+        
+          <div style={cardTheme} className="card">HOVER</div>
+        
+        
         <h1>Important Tasks</h1>
         <ToDoForm todo={todo} setTodo={setTodo}/>
         <Data todo={todo} setTodo={setTodo}/>

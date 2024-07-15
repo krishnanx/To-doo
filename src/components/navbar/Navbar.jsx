@@ -20,26 +20,65 @@ const Navbar = (l) => {
   const location = useLocation();
   const [Location, setLocation] = useState("");
   const [value,setValue] = useState('')
-  const [email,setEmail,currentUser,setCurrentUser,pic,setPic] = useContext(Email)
+  const [email,setEmail,currentUser,setCurrentUser,pic,setPic,click,setClick] = useContext(Email)
+  useEffect(()=>{
+    const allCookies = document.cookie.split('; ').map(cookie => {
+      const [name, value] = cookie.split('=');
+      return { name, value };
+    });
+    console.log(allCookies);
+    function getCookie(Name) {
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + Name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+    
+    // Example usage: retrieving the value of the cookie named 'myURL'
+    let urlFromCookie = getCookie(allCookies[2].name);
+    console.log(urlFromCookie);  // Output the URL stored in the cookie
+    try {
+      setPic(urlFromCookie);
+      //console.log(pic)
+    } catch (error) {
+      console.log("error",error)
+    }
+    //(allCookies[2].value!==undefined)?(setEmail(allCookies[1].value)):(setEmail(null))
+
+  },[])
   const HandleClick=()=>{
     setTheme(!theme);
+  }
+  const handleInfo = () => {
+    try {
+      setClick(true)
+      console.log(click)
+    } catch (error) {
+      console.log(error)
+    }
   }
   const signIn = async() =>{
     try {
       
         const userCredentials = await signInWithPopup(auth, provider);
         const user = userCredentials.user;
-        console.log(user.photoURL)
-        setPic(user);
+        //console.log(user)
+        try {
+          setPic(user.photoURL);
+          //console.log(pic)
+        } catch (error) {
+          console.log("error",error)
+        }
+        
         setEmail(user.email);
         setCurrentUser(user.displayName)
-        document.cookie = `user=${user.email}; path=/; expires=31 Dec 2024 `;
+        document.cookie = `userEmail=${user.email}; path=/; expires=31 Dec 2024 `;
+        document.cookie = `userPhotoURL=${user.photoURL}; path=/; expires=31 Dec 2024`;
         /*setTimeout(() => {
           setPic(user.photoURL)
         },1000);*/
         
         //console.log(user.photoURL)
-        console.log(pic)
+        //console.log(pic)
         /*const idTokenResult = await user.getIdTokenResult();
         const expirationTime = idTokenResult.expirationTime; // Timestamp of token expiration
         console.log('Token expiration time:', new Date(expirationTime));
@@ -194,7 +233,13 @@ const Navbar = (l) => {
               Sign out
           </button>
             }
-            {/*<img src={pic}></img>*/}
+            {email!==null?
+            <button 
+              className="EpicButton"
+              onClick={handleInfo}
+              >
+              <img className="Epic" src={pic}></img>
+            </button>:null}
         </div>
       </div>
     
