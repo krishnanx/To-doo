@@ -22,14 +22,21 @@ export const AddData = ()=>{
 
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const apiKey = `${import.meta.env.VITE_APP_API_KEY}`
+    const authDomain = `${import.meta.env.VITE_APP_AUTH_DOMAIN}`
+    const projectId = `${import.meta.env.VITE_APP_PROJECT_ID}`
+    const storageBucket= `${import.meta.env.VITE_APP_STORAGE_BUCKET}`
+    const messagingSenderId= `${import.meta.env.VITE_APP_MESSAGING_SENDER_ID}`
+    const appId = `${import.meta.env.VITE_APP_APP_ID}`
+    const measurementId = `${import.meta.env.VITE_APP_MEASUREMENT_ID}`
     const firebaseConfig = {
-      apiKey: "AIzaSyBa6Kv1wJNHSC6IsUXkjC0jjYs5KBn8Ky0",
-      authDomain: "to-doo-b8587.firebaseapp.com",
-      projectId: "to-doo-b8587",
-      storageBucket: "to-doo-b8587.appspot.com",
-      messagingSenderId: "343664035395",
-      appId: "1:343664035395:web:742b3171056807dd90b6f6",
-      measurementId: "G-5QS4V3W3DV"
+        apiKey:`${apiKey}`,
+        authDomain:`${authDomain}`,
+        projectId:`${projectId}`,
+        storageBucket:`${storageBucket}`,
+        messagingSenderId:`${messagingSenderId}`,
+        appId:`${appId}`,
+        measurementId:`${measurementId}`
       };
   
       // Initialize Firebase
