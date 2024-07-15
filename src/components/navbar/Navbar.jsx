@@ -3,7 +3,7 @@ import moon from '../navbar/icons/moon-solid.svg'
 import sun from '../navbar/icons/sun-solid.svg'
 import "./navbar.css";
 import Blogo from "./icons/to-do-high-resolution-logo-black-transparent.png";
-//import Wlogo from "./icons/whiteLogo"
+import Wlogo from "./icons/whiteLogo.png"
 import { useNavigate,useLocation } from "react-router-dom";
 import { importantContext} from '../../App';
 import { getAuth,signInWithPopup,setPersistence ,browserSessionPersistence,signOut} from "firebase/auth";
@@ -15,12 +15,12 @@ import Cookies from 'js-cookie';
 const Navbar = (l) => {
   //const auth = getAuth();
   const [todo,setTodo,theme,setTheme]=useContext(importantContext);
-  const [Name, setName] = useState("Important Tasks");
+  //const [pic, setPic] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
   const [Location, setLocation] = useState("");
   const [value,setValue] = useState('')
-  const [email,setEmail,currentUser,setCurrentUser] = useContext(Email)
+  const [email,setEmail,currentUser,setCurrentUser,pic,setPic] = useContext(Email)
   const HandleClick=()=>{
     setTheme(!theme);
   }
@@ -29,10 +29,17 @@ const Navbar = (l) => {
       
         const userCredentials = await signInWithPopup(auth, provider);
         const user = userCredentials.user;
-        console.log(user)
+        console.log(user.photoURL)
+        setPic(user);
         setEmail(user.email);
         setCurrentUser(user.displayName)
         document.cookie = `user=${user.email}; path=/; expires=31 Dec 2024 `;
+        /*setTimeout(() => {
+          setPic(user.photoURL)
+        },1000);*/
+        
+        //console.log(user.photoURL)
+        console.log(pic)
         /*const idTokenResult = await user.getIdTokenResult();
         const expirationTime = idTokenResult.expirationTime; // Timestamp of token expiration
         console.log('Token expiration time:', new Date(expirationTime));
@@ -99,25 +106,31 @@ const Navbar = (l) => {
     Name = "Home"
   }*/
   const styling = {
-    backgroundColor:theme?'rgba(255, 255, 255, 0.15)':'#CD5D67'
+    backgroundColor:theme?'rgba(255, 255, 255, 0.15)':'rgba(0, 0, 0, 0.3)'
+  }
+  const themeStyle = {
+    color:theme?'white':'black'
+  }
+  const ThemeColor = {
+    border:theme?'solid':'solid',
+    borderColor:theme?"#FCFBFA":'#222',
+    backgroundColor:theme?" #333":"white",
+    color:theme?'white':'black',
+    boxShadow:theme?`-5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+    inset -5px -5px 10px #222`:`-5px -5px 15px transparent, 5px 5px 15px white, inset 5px 5px 10px transparent,
+    inset -5px -5px 10px wheat`
   }
   return (
     
       <div className="navbar" style={styling}>
         <div className="left_icons">
-          <img className="logo" src={Blogo}></img>
+          <img className="logo" src={theme?Wlogo:Blogo}></img>
           
         </div>
         <div className="Middle_icons">
-         
-          <a
-          className="CompletedTasks"
-          
-          >
-            
-          </a>
           {email!==null?location.pathname!== "/Important" ? (
              <a
+              style={themeStyle}
               className="ImportantTasks"   
               onClick={() => {
                     navigate("/Important");
@@ -125,6 +138,7 @@ const Navbar = (l) => {
           </a>
           ) : (
             <a
+              style={themeStyle}
               className="ImportantTasks"   
               onClick={() => {
                     navigate("/");
@@ -132,8 +146,9 @@ const Navbar = (l) => {
               </a>
           ):null}
           
-          {email!==null?location.pathname!== "/Completed" ? (
-           <a
+          {email!==null?location.pathname!== "/completed" ? (
+             <a
+             style={themeStyle}
               className="ImportantTasks"   
               onClick={() => {
                     navigate("/completed");
@@ -141,6 +156,7 @@ const Navbar = (l) => {
           </a>
           ) : (
             <a
+              style={themeStyle}
               className="ImportantTasks"   
               onClick={() => {
                     navigate("/");
@@ -149,26 +165,36 @@ const Navbar = (l) => {
           ):null}
         </div>
         <div className="Right_icons">
-          {theme?(<button className="sun" onClick={HandleClick}><img src={sun}></img></button>):(<button className="moon"  onClick={HandleClick}><img src={moon}></img></button>)}
+          {/*theme?(<button className="sun" onClick={HandleClick}><img src={sun}></img></button>):(<button className="moon"  onClick={HandleClick}><img src={moon}></img></button>)*/}
+          
+          <label className="switch">
+            <span className="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
+            <span className="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></span>   
+            <input type="checkbox" className="input" onClick={HandleClick}/>
+            <span className="slider"></span>
+          </label>
           
           
           {email===null?
           <button 
-            className="button-55"
-            role="button"
+            style={ThemeColor}
+            className="button-1"
+            //role="button"
             onClick={signIn}
             >
               Sign In
           </button>
             :
           <button 
-            className="button-55"
-            role="button"
+            style={ThemeColor}
+            className="button-1"
+            //role="button"
             onClick={signout}
             >
               Sign out
           </button>
             }
+            {/*<img src={pic}></img>*/}
         </div>
       </div>
     

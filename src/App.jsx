@@ -24,7 +24,8 @@ const App = () => {
     linear-gradient(#282828 14%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 85%, #282828 0) 0 0 / 40px 60px,
     linear-gradient(150deg, #282828 24%, #2c3539 0, #2c3539 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #2c3539 0, #2c3539 76%, #282828 0) 0 0 / 40px 60px,
     linear-gradient(30deg, #282828 24%, #2c3539 0, #2c3539 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #2c3539 0, #2c3539 76%, #282828 0) 0 0 / 40px 60px,
-    linear-gradient(90deg, #2c3539 2%, #282828 0, #282828 98%, #2c3539 0%) 0 0 / 40px 60px #282828`:document.documentElement.style.background='none';
+    linear-gradient(90deg, #2c3539 2%, #282828 0, #282828 98%, #2c3539 0%) 0 0 / 40px 60px #282828`:document.documentElement.style.background=`linear-gradient(45deg,transparent 33.33%,rgba(57, 144, 179, 0.1) 33.33%,rgba(0, 0, 0, 0.1) 66.66%,
+      transparent 66.66%) 0 0 / 20px 20px,lightblue`;
   /*useEffect(()=>{
     auth.onAuthStateChanged((user)=>{
       setUser(user);

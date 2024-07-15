@@ -2,7 +2,8 @@ import React,{createContext,useState,useEffect} from 'react'
 export const Email = createContext();
 const EmailContext = ({children}) => {
     const [email,setEmail] = useState(null);
-    const [currentUser,SetCurrentUser] = useState(null)
+    const [currentUser,SetCurrentUser] = useState(null);
+    const [pic,setPic] = useState({});
     useEffect(()=>{
       const allCookies = document.cookie.split('; ').map(cookie => {
         const [name, value] = cookie.split('=');
@@ -23,7 +24,7 @@ const EmailContext = ({children}) => {
     },[])
   return (
     <div>
-        <Email.Provider value={[email,setEmail,currentUser,SetCurrentUser]}>
+        <Email.Provider value={[email,setEmail,currentUser,SetCurrentUser,pic,setPic]}>
             {children}
         </Email.Provider>
     </div>
