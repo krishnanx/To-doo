@@ -26,7 +26,7 @@ const Navbar = (l) => {
       const [name, value] = cookie.split('=');
       return { name, value };
     });
-    console.log(allCookies);
+    //console.log(allCookies);
     function getCookie(Name) {
       let value = "; " + document.cookie;
       let parts = value.split("; " + Name + "=");
@@ -35,12 +35,12 @@ const Navbar = (l) => {
     
     // Example usage: retrieving the value of the cookie named 'myURL'
     let urlFromCookie = getCookie(allCookies[2].name);
-    console.log(urlFromCookie);  // Output the URL stored in the cookie
+    //console.log(urlFromCookie);  // Output the URL stored in the cookie
     try {
       setPic(urlFromCookie);
-      //console.log(pic)
+      ////console.log(pic)
     } catch (error) {
-      console.log("error",error)
+      //console.log("error",error)
     }
     //(allCookies[2].value!==undefined)?(setEmail(allCookies[1].value)):(setEmail(null))
 
@@ -51,9 +51,9 @@ const Navbar = (l) => {
   const handleInfo = () => {
     try {
       setClick(true)
-      console.log(click)
+      //console.log(click)
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }
   }
   const signIn = async() =>{
@@ -61,12 +61,12 @@ const Navbar = (l) => {
       
         const userCredentials = await signInWithPopup(auth, provider);
         const user = userCredentials.user;
-        //console.log(user)
+        ////console.log(user)
         try {
           setPic(user.photoURL);
-          //console.log(pic)
+          ////console.log(pic)
         } catch (error) {
-          console.log("error",error)
+          //console.log("error",error)
         }
         
         setEmail(user.email);
@@ -77,24 +77,24 @@ const Navbar = (l) => {
           setPic(user.photoURL)
         },1000);*/
         
-        //console.log(user.photoURL)
-        //console.log(pic)
+        ////console.log(user.photoURL)
+        ////console.log(pic)
         /*const idTokenResult = await user.getIdTokenResult();
         const expirationTime = idTokenResult.expirationTime; // Timestamp of token expiration
-        console.log('Token expiration time:', new Date(expirationTime));
+        //console.log('Token expiration time:', new Date(expirationTime));
 
         const token = await user.getIdToken();
-        console.log('Token retrieved:', token); // Debugging log
+        //console.log('Token retrieved:', token); // Debugging log
 
         // Set the token in a secure cookie
         Cookies.set('authToken', token, { secure: true, sameSite: 'Strict' });
-        console.log('Cookie set:', Cookies.get('authToken')); // Debugging log*/
+        //console.log('Cookie set:', Cookies.get('authToken')); // Debugging log*/
 
-        console.log('User signed in and cookie set.');
+        //console.log('User signed in and cookie set.');
      
       
     } catch (error) {
-      console.log("error:", error)
+      //console.log("error:", error)
     }
    
   }
@@ -104,9 +104,9 @@ const Navbar = (l) => {
       await signOut(auth).then(()=>{
         setEmail(null)
         setCurrentUser(null)
-        console.log("sign out...")
+        //console.log("sign out...")
         document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-        console.log('User signed out and cookie removed.');
+        //console.log('User signed out and cookie removed.');
         navigate('/')
       })
       //const user = userCredentials.user;
@@ -114,11 +114,11 @@ const Navbar = (l) => {
         
       
       /*function onRemoved(cookie) {
-        console.log(`Removed: ${cookie}`);
+        //console.log(`Removed: ${cookie}`);
       }
       
       function onError(error) {
-        console.log(`Error removing cookie: ${error}`);
+        //console.log(`Error removing cookie: ${error}`);
       }
       
       function removeCookie(tabs) {
@@ -134,7 +134,7 @@ const Navbar = (l) => {
       //document.cookie = 'COOKIE_NAME=; Max-Age=0; path=/; domain=' + location.host;
       
     } catch (error) {
-      console.log("error:", error)
+      //console.log("error:", error)
     }
   }
   useEffect(()=>{

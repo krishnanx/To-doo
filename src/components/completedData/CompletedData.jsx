@@ -10,7 +10,7 @@ const CompletedData = (P) => {
     const [todo,setTodo] = useContext(importantContext);
    
     const [email,setEmail] = useContext(Email)
-    //console.log('Data component rendered');
+    ////console.log('Data component rendered');
     //const todo=p.todo;
     //const setTodo=p.setTodo;
     /*useEffect(()=>{
@@ -20,7 +20,7 @@ const CompletedData = (P) => {
           const information = response1.docs.map(doc=>doc.data());
           setTodo(information)
         } catch (error) {
-          console.log(error)
+          //console.log(error)
         }
       }
     response();
@@ -29,15 +29,15 @@ const CompletedData = (P) => {
    useEffect(()=>{
     onSnapshot(docRef, (snapshot) => {
       const docs = snapshot.docs
-      console.log(docs)
+      //console.log(docs)
       setTodo(docs)
-      //console.log(todo)
+      ////console.log(todo)
     })
    },[email])
   return (
     <div className='Ctask'>
         {(todo)?(todo.map((value, index) => {
-          //console.log(value.data().status)
+          ////console.log(value.data().status)
         return value.data().status === true ? (<CList value={value} index={index} setTodo={setTodo} array={todo}/>) : null})) : (null)}
     </div>
   )

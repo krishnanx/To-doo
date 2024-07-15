@@ -13,19 +13,19 @@ import { Email } from '../Contexts/EmailContext';
 const Data = (p) => {
       const [todo,setTodo] = useContext(importantContext)
       const [email,setEmail] = useContext(Email)
-      //console.log('Data component rendered');
+      ////console.log('Data component rendered');
       //const todo=p.todo;
       //const setTodo=p.setTodo;
       /*useEffect(()=>{
         const response = async()=> {
           try {
             const response1 =await FetchData()
-            //console.log(response1)
+            ////console.log(response1)
             //const information = response1.docs.map(doc=>doc.data());
             //setTodo(response1)
-            console.log(response1)
+            //console.log(response1)
           } catch (error) {
-            //console.log(error)
+            ////console.log(error)
           }
         }
       response();
@@ -34,16 +34,16 @@ const Data = (p) => {
    useEffect(()=>{
     onSnapshot(docRef, (snapshot) => {
       const docs = snapshot.docs
-      console.log(docs)
+      //console.log(docs)
       setTodo(docs)
-      //console.log(todo)
+      ////console.log(todo)
     })
    },[email])
-    //console.log(docs)
+    ////console.log(docs)
     /*useEffect(() => {
-      console.log(todo); // Log the updated todo state
+      //console.log(todo); // Log the updated todo state
     }, [todo]); // This effect runs whenever `todo` changes*/
-    //console.log(todo)
+    ////console.log(todo)
       
 
   
@@ -56,7 +56,7 @@ const Data = (p) => {
   return (
     <div className="task">
         {(todo)?(todo.map((value, index) => {
-          //console.log(value.data().status)
+          ////console.log(value.data().status)
   return value.data().status === false ? 
     (<List value={value} index={index} setTodo={setTodo} array={todo}/>) : 
     null;

@@ -4,7 +4,7 @@ import useAuthCheck from './AuthCheck';
 
 const Protected = ({ children }) => {
   const isAuthenticated = useAuthCheck();
-  console.log(isAuthenticated)
+  //console.log(isAuthenticated)
   if (isAuthenticated) {
     return <Navigate to="/important" />;
   }

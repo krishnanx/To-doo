@@ -3,17 +3,17 @@ import {colRef} from './Firebase/Firestore';
 import {getDocs, onSnapshot} from 'firebase/firestore'
 export const FetchData =()=>{
     /*const response = await getDocs(colRef)
-    //console.log(response)
+    ////console.log(response)
     return response
     //const tasksData = response.docs.map(doc => doc.data());
-          //console.log(tasksData); // This should only log once when data is fetched
+          ////console.log(tasksData); // This should only log once when data is fetched
           //setTodo(tasksData)*/
         
             /*return new Promise((resolve, reject) => {
                 onSnapshot(colRef, (snapshot) => {
                     const docs = snapshot.docs;
                     resolve(docs);
-                    //console.log(docs)
+                    ////console.log(docs)
                 }, (error) => {
                     reject(error);
                 });

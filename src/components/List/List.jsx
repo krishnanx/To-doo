@@ -10,18 +10,18 @@ const List = (P) => {
   const [email,setEmail] = useContext(Email)
   
   const task = P.value;
-  //console.log(task.id)
+  ////console.log(task.id)
   const id = task.id
-  console.log(id)
+  //console.log(id)
   const blog = task.data().work;
-  console.log(blog)
+  //console.log(blog)
   const docRef = doc(db,'Database',`${email}`,`${email}`,id)
   //const docRef = doc(db,'Database',id);
-  //console.log(task.data())
+  ////console.log(task.data())
   const index = P.index;
   const array = P.array;
   const setTodo = P.setTodo;
-  //console.log(blog,index);
+  ////console.log(blog,index);
   
   const removeItem = (Index) => {
     setTimeout(() => {
@@ -32,9 +32,9 @@ const List = (P) => {
   };
 
   //const HandleClick = () => {
-  //   console.log(array);
+  //   //console.log(array);
   //   const Index = array.indexOf(blog);
-  //   console.log(Index);
+  //   //console.log(Index);
   //   setComp_value([...comp_value, blog]);
   //   blog = "";
   //   removeItem(Index);
@@ -55,21 +55,21 @@ const List = (P) => {
           status:true,
           work:blog
         });
-        console.log('Document successfully updated!');
+        //console.log('Document successfully updated!');
       },600)
       
     } catch (error) {
       console.error('Error updating document: ', error);
     }
 
-    //console.log(array);
+    ////console.log(array);
     //const Index = array.indexOf(blog);
-    //console.log(Index);
+    ////console.log(Index);
     //setComp_value([...comp_value, blog]);
     
     //removeItem(Index);
 
-    //console.log(comp_value)
+    ////console.log(comp_value)
   };
   return (
     <div className="List_div">

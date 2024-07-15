@@ -10,7 +10,7 @@ const EmailContext = ({children}) => {
         const [name, value] = cookie.split('=');
         return { name, value };
       });
-      console.log(allCookies);
+      //console.log(allCookies);
       function getCookie(Name) {
         let value = "; " + document.cookie;
         let parts = value.split("; " + Name + "=");
@@ -19,7 +19,7 @@ const EmailContext = ({children}) => {
       
       // Example usage: retrieving the value of the cookie named 'myURL'
       let urlFromCookie = getCookie(allCookies[1].name);
-      console.log(urlFromCookie);  // Output the URL stored in the cookie
+      //console.log(urlFromCookie);  // Output the URL stored in the cookie
       (allCookies[1].value!==undefined)?(setEmail(allCookies[1].value)):(setEmail(null))
 
     },[])

@@ -8,10 +8,10 @@ import { Email } from '../Contexts/EmailContext';
 const CList = (P) => {
     const [email,setEmail] = useContext(Email)
     const task = P.value;
-    //console.log(task.id)
+    ////console.log(task.id)
     const id = task.id
     const blog = task.data().work;
-    console.log(blog)
+    //console.log(blog)
     const docRef = doc(db,'Database',`${email}`,`${email}`,id)
     //const docRef = doc(db,'Database',id);
     //const comp_value=P.comp_value;
@@ -36,7 +36,7 @@ const CList = (P) => {
             status:false,
             work:blog
           });
-          console.log('Document successfully updated!');
+          //console.log('Document successfully updated!');
       },600)
       } catch (error) {
           console.error('Error updating document: ', error);

@@ -21,7 +21,7 @@ const ToDoForm = (p) => {
       }
       )
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }
     /*addDoc(colRef,{
       status:false,
@@ -29,12 +29,12 @@ const ToDoForm = (p) => {
      })*/
     /*const response = await FetchData()
     const information = response.docs.map(doc=>doc.data());
-    console.log(information)
+    //console.log(information)
     try {
       setTodo(information)
-      //console.log(todo)
+      ////console.log(todo)
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }*/
   }
  
@@ -59,7 +59,7 @@ const ToDoForm = (p) => {
                 className="Submit"
                 onClick={(e) => {
                   e.preventDefault();
-                  //console.log(value);
+                  ////console.log(value);
                   //setTodo([...todo, value]);
                   handleClick()
                   setValue("");
